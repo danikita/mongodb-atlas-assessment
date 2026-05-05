@@ -14,6 +14,7 @@ This repository contains code that performs an assessment of a MongoDB Atlas env
 - Python Libraries:
   - pymongo
   - requests
+  - pexpect
 
 - Node.js:
   - Node.js 20.x
