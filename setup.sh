@@ -30,6 +30,19 @@ install_amazon_linux() {
   curl -fsSL https://rpm.nodesource.com/setup_20.x | sudo bash -
   sudo yum install -y nodejs
 
+  echo "Adding MongoDB repository..."
+  sudo tee /etc/yum.repos.d/mongodb-org.repo << 'EOF'
+  [mongodb-org-6.0]
+  name=MongoDB Repository
+  baseurl=https://repo.mongodb.org/yum/amazon/2023/mongodb-org/6.0/x86_64/
+  gpgcheck=1
+  enabled=1
+  gpgkey=https://pgp.mongodb.com/server-6.0.asc
+  EOF
+  
+  sudo yum clean all
+  sudo yum makecache
+  
   echo "Installing MongoDB Shell (mongosh)..."
   sudo yum install -y mongodb-mongosh
 
