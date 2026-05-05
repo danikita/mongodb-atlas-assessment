@@ -23,7 +23,7 @@ install_amazon_linux() {
   python3 -m pip install --upgrade pip
 
   echo "Installing Python dependencies..."
-  python3 -m pip install pymongo requests pexpect
+  python3 -m pip install pymongo requests pexpect pandas
 
   echo "Installing Node.js 20.x..."
   curl -fsSL https://rpm.nodesource.com/setup_20.x | sudo bash -
@@ -55,7 +55,7 @@ install_ubuntu() {
 
   echo "Installing Python dependencies..."
   pip3 install --upgrade pip
-  pip3 install pymongo requests pexpect
+  pip3 install pymongo requests pexpect pandas
 
   echo "Installing Node.js 20.x..."
   curl -fsSL https://deb.nodesource.com/setup_20.x | sudo bash -
