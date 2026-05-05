@@ -12,16 +12,19 @@ else
 fi
 
 install_amazon_linux() {
+
   echo "Detected Amazon Linux"
 
   sudo yum update -y
 
-  echo "Installing Python 3..."
-  sudo yum install -y python3
+  echo "Installing Python 3 and pip..."
+  sudo yum install -y python3 python3-pip
+
+  echo "Upgrading pip..."
+  python3 -m pip install --upgrade pip
 
   echo "Installing Python dependencies..."
-  pip3 install --upgrade pip
-  pip3 install pymongo requests
+  python3 -m pip install pymongo requests
 
   echo "Installing Node.js 20.x..."
   curl -fsSL https://rpm.nodesource.com/setup_20.x | sudo bash -
