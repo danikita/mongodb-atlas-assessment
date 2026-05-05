@@ -16,6 +16,7 @@ This repository contains code that performs an assessment of a MongoDB Atlas env
   - requests
   - pexpect
   - pandas
+  - openpyxl
 
 - Node.js:
   - Node.js 20.x
