@@ -39,9 +39,9 @@ chmod +x setup.sh
 ./setup.sh
 ```
 
-## Step 1 - Database Triggers Assessment
+## Assessment Generator
 
-The script `export_realm.py` uses the **MongoDB Realm CLI** to analyze whether the MongoDB Atlas cluster makes use of **Database Triggers**.
+The script uses the **MongoDB Realm CLI** to analyze the MongoDB Atlas cluster and is responsible for generating the final MongoDB Atlas environment assessment.
 
 ### How it works
 
@@ -50,21 +50,6 @@ The script `export_realm.py` uses the **MongoDB Realm CLI** to analyze whether t
 - If Database Triggers are found, the script exports their definitions.
 - During execution, the user is prompted to choose an output directory.
 - The results are then generated in a structured folder hierarchy inside the selected directory, organizing the exported triggers for easy review and analysis.
-
-### Execution
-
-Run the script using Python 3:
-
-```bash
-python3 export_realm.py
-```
-
-## Step 2 – Assessment Generator
-
-The script `assessment_generator.py` is responsible for generating the final MongoDB Atlas environment assessment.
-
-### What it does
-
 - Performs a full scan of **all projects within a MongoDB Atlas organization**.
 - Collects configuration and usage data from each project and its clusters.
 - Correlates cluster information with Database Trigger data exported in Step 1.
