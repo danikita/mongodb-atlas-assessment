@@ -279,7 +279,7 @@ for app_name, app_id in apps:
         child.send(project_name)
         child.sendline("")
 
-        child.expect("Use arrows to move")
+        child.expect("Scaning Project")
 
         child.send(app_name)
         child.sendline("")
