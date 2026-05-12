@@ -132,7 +132,7 @@ def atlas_get(url):
 # =====================================================
 
 print(
-    f"\n{YELLOW}Validando sessão realm-cli...{RESET}"
+    f"\n{YELLOW}Validating realm-cli session...{RESET}"
 )
 
 session = subprocess.run(
@@ -144,7 +144,7 @@ session = subprocess.run(
 if session.returncode != 0:
 
     print(
-        f"{RED}Sessão inválida{RESET}"
+        f"{RED}Invalid session{RESET}"
     )
 
     print(
@@ -154,7 +154,7 @@ if session.returncode != 0:
     exit(1)
 
 print(
-    f"{GREEN}OK{RESET} - Sessão válida"
+    f"{GREEN}OK{RESET} - Valid session"
 )
 
 # =====================================================
@@ -162,7 +162,7 @@ print(
 # =====================================================
 
 print(
-    f"\n{YELLOW}Listando apps realm-cli...{RESET}"
+    f"\n{YELLOW}Listing realm-cli apps...{RESET}"
 )
 
 result = subprocess.run(
