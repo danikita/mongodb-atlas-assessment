@@ -66,11 +66,3 @@ Run the script using Python 3:
 ```bash
 python3 assessment_generator.py
 ```
-
-### Error: Invalid Session
-
-If you encounter the **Invalid Session** error, run the command below to manually provide your credentials and re-authenticate:
-
-```bash
-realm-cli login --api-key <PUBLIC_KEY> --private-api-key <PRIVATE_KEY>
-```
