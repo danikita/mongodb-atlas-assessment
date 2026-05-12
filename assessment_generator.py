@@ -96,6 +96,78 @@ PRIVATE_KEY = getpass_with_asterisks(
 )
 
 # =====================================================
+# AUTO LOGIN realm-cli
+# =====================================================
+
+print(
+    f"\n{YELLOW}Authenticating realm-cli...{RESET}"
+)
+
+try:
+
+    login_child = pexpect.spawn(
+        f"realm-cli login "
+        f"--api-key {PUBLIC_KEY} "
+        f"--private-api-key {PRIVATE_KEY}",
+        encoding="utf-8",
+        timeout=60
+    )
+
+    # realm-cli may ask to override an existing session
+    index = login_child.expect(
+        [
+            r"(?i)logged in",
+            r"(?i)already logged in",
+            r"(?i)would you like to log out",
+            pexpect.EOF,
+            pexpect.TIMEOUT
+        ]
+    )
+
+    if index == 2:
+        # There is an active session — confirm override
+        login_child.sendline("y")
+        login_child.expect(
+            [
+                r"(?i)logged in",
+                pexpect.EOF,
+                pexpect.TIMEOUT
+            ]
+        )
+
+    login_child.expect(pexpect.EOF)
+
+    if login_child.exitstatus not in (0, None):
+
+        print(
+            f"{RED}realm-cli login failed "
+            f"(exit {login_child.exitstatus}){RESET}"
+        )
+
+        sys.exit(1)
+
+    print(
+        f"{GREEN}OK{RESET} - realm-cli authenticated"
+    )
+
+except pexpect.TIMEOUT:
+
+    print(
+        f"{RED}Timeout during realm-cli login{RESET}"
+    )
+
+    sys.exit(1)
+
+except Exception as e:
+
+    print(
+        f"{RED}Error during realm-cli login:{RESET} "
+        f"{str(e)}"
+    )
+
+    sys.exit(1)
+
+# =====================================================
 # URLS
 # =====================================================
 
@@ -128,7 +200,7 @@ def atlas_get(url):
     )
 
 # =====================================================
-#VALIDATE SESSION
+# VALIDATE SESSION
 # =====================================================
 
 print(
