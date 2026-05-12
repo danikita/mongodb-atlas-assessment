@@ -76,7 +76,7 @@ def getpass_with_asterisks(prompt="Password: "):
 # INPUTS
 # =====================================================
 
-default_export = "/home/ec2-user/realm_exports"
+default_export = "/home/mongodbatlas_assessment_outputs"
 
 BASE_EXPORT_DIR = input(
     f"Inform the BASE_EXPORT_DIR "
