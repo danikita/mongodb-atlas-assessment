@@ -13,7 +13,7 @@ import pexpect
 from requests.auth import HTTPDigestAuth
 
 # =====================================================
-# CORES ANSI
+## ANSI COLORS
 # =====================================================
 
 GREEN = "\033[92m"
@@ -128,7 +128,7 @@ def atlas_get(url):
     )
 
 # =====================================================
-# VALIDAR SESSION
+#VALIDATE SESSION
 # =====================================================
 
 print(
@@ -178,8 +178,8 @@ apps_cli = re.findall(
     result.stdout
 )
 
-# apps_cli usado apenas no export pexpect
-# a lista completa (apps) vem da API abaixo
+## apps_cli is used only for the pexpect export
+## the full list (apps) comes from the API below
 apps = []
 
 print(
@@ -188,11 +188,11 @@ print(
 )
 
 # =====================================================
-# APP -> PROJECT MAP (dinâmico via realm-cli)
+## APP -> PROJECT MAP (dynamic via realm-cli)
 # =====================================================
 
 print(
-    f"\n{YELLOW}Mapeando apps para projetos...{RESET}"
+    f"\n{YELLOW}Mapping apps to projects...{RESET}"
 )
 
 APP_PROJECT_MAP = {}
@@ -239,13 +239,13 @@ for _proj in projects_for_map:
 
 print(
     f"{GREEN}OK{RESET} - "
-    f"{len(APP_PROJECT_MAP)} app(s) mapeado(s)"
+    f"{len(APP_PROJECT_MAP)} app(s) mapped"
 )
 
 if not apps:
 
     print(
-        f"{RED}Nenhum app encontrado{RESET}"
+        f"{RED}No app found{RESET}"
     )
 
     exit(1)
@@ -265,7 +265,7 @@ os.makedirs(
 # =====================================================
 
 print(
-    f"\n{CYAN}=== EXPORTANDO APPS ==={RESET}"
+    f"\n{CYAN}=== EXPORTING APPS ==={RESET}"
 )
 
 for app_name, app_id in apps:
@@ -312,7 +312,7 @@ for app_name, app_id in apps:
         if not project_name:
 
             print(
-                f"{RED}Projeto não mapeado{RESET}"
+                f"{RED}Project not mapped{RESET}"
             )
 
             continue
@@ -328,13 +328,13 @@ for app_name, app_id in apps:
         child.expect(pexpect.EOF)
 
         print(
-            f"{GREEN}✔ Export concluído{RESET}"
+            f"{GREEN}✔ Export completed{RESET}"
         )
 
     except Exception as e:
 
         print(
-            f"{RED}ERRO export{RESET}"
+            f"{RED}export ERROR{RESET}"
         )
 
         print(str(e))
@@ -352,7 +352,7 @@ os.chdir(
 # =====================================================
 
 print(
-    f"\n{YELLOW}Listando projetos Atlas...{RESET}"
+    f"\n{YELLOW}Listing Atlas Projects...{RESET}"
 )
 
 projects_resp = atlas_get(
@@ -366,7 +366,7 @@ projects = projects_resp.json().get(
 
 print(
     f"{GREEN}OK{RESET} - "
-    f"{len(projects)} projeto(s)"
+    f"{len(projects)} project(s)"
 )
 
 # =====================================================
@@ -392,7 +392,7 @@ for project in projects:
     PROJECT_NAME = project.get("name")
 
     print(
-        f"\n{CYAN}Projeto:{RESET} "
+        f"\n{CYAN}Project:{RESET} "
         f"{PROJECT_NAME}"
     )
 
@@ -423,7 +423,7 @@ for project in projects:
     # =================================================
 
     print(
-        f"{YELLOW}Coletando clusters...{RESET}"
+        f"{YELLOW}Collecting clusters...{RESET}"
     )
 
     cluster_resp = atlas_get(
@@ -733,7 +733,7 @@ for project in projects:
 
         print(
             f"{GREEN}OK{RESET} - "
-            f"App encontrado: "
+            f"App found: "
             f"{app_name}"
         )
 
@@ -765,7 +765,7 @@ for project in projects:
         if not os.path.exists(real_trigger_dir):
 
             print(
-                f"{RED}Diretório real de triggers não encontrado{RESET}"
+                f"{RED}Real triggers directory not found{RESET}"
             )
 
             continue
@@ -970,7 +970,7 @@ for project in projects:
 # =====================================================
 
 print(
-    f"\n{YELLOW}Gerando output consolidado...{RESET}"
+    f"\n{YELLOW}Generating consolidated output...{RESET}"
 )
 
 json_path = os.path.join(
@@ -990,7 +990,7 @@ with open(
     )
 
 print(
-    f"{GREEN}OK{RESET} - JSON gerado:"
+    f"{GREEN}OK{RESET} - JSON generated:"
 )
 
 print(json_path)
@@ -1000,7 +1000,7 @@ print(json_path)
 # =====================================================
 
 print(
-    f"\n{YELLOW}Gerando Excel...{RESET}"
+    f"\n{YELLOW}Generating Excel...{RESET}"
 )
 
 excel_path = os.path.join(
@@ -1038,11 +1038,11 @@ with pd.ExcelWriter(
     )
 
 print(
-    f"{GREEN}OK{RESET} - Excel gerado:"
+    f"{GREEN}OK{RESET} - Excel generated:"
 )
 
 print(excel_path)
 
 print(
-    f"\n{GREEN}Pipeline finalizado{RESET}"
+    f"\n{GREEN}Pipeline completed{RESET}"
 )
