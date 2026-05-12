@@ -51,11 +51,21 @@ install_ubuntu() {
   sudo apt update -y
 
   echo "Installing base packages..."
-  sudo apt install -y python3 python3-pip curl gnupg
+  sudo apt install -y \
+    python3 \
+    python3-pip \
+    python3-venv \
+    curl \
+    gnupg
+
+  echo "Creating Python virtual environment..."
+  python3 -m venv ~/venv
+
+  source ~/venv/bin/activate
 
   echo "Installing Python dependencies..."
-  pip3 install --upgrade pip
-  pip3 install pymongo requests pexpect pandas openpyxl
+  pip install --upgrade pip
+  pip install pymongo requests pexpect pandas openpyxl
 
   echo "Installing Node.js 20.x..."
   curl -fsSL https://deb.nodesource.com/setup_20.x | sudo bash -
@@ -74,6 +84,8 @@ https://repo.mongodb.org/apt/ubuntu ${VERSION_CODENAME}/mongodb-org/6.0 multiver
 
   echo "Installing MongoDB Realm CLI..."
   sudo npm install -g mongodb-realm-cli
+
+  echo "Done."
 }
 
 case "$ID" in
