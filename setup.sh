@@ -72,15 +72,15 @@ install_ubuntu() {
   sudo apt install -y nodejs
 
   echo "Installing MongoDB Shell (mongosh)..."
-  curl -fsSL https://pgp.mongodb.com/server-6.0.asc | \
-    sudo gpg --dearmor -o /usr/share/keyrings/mongodb-server.gpg
+curl -fsSL https://pgp.mongodb.com/server-7.0.asc | \
+  sudo gpg --dearmor -o /usr/share/keyrings/mongodb-server.gpg
 
-  echo "deb [ signed-by=/usr/share/keyrings/mongodb-server.gpg ] \
-https://repo.mongodb.org/apt/ubuntu ${VERSION_CODENAME}/mongodb-org/6.0 multiverse" | \
-    sudo tee /etc/apt/sources.list.d/mongodb-org-6.0.list
+echo "deb [ signed-by=/usr/share/keyrings/mongodb-server.gpg ] \
+https://repo.mongodb.org/apt/ubuntu jammy/mongodb-org/7.0 multiverse" | \
+  sudo tee /etc/apt/sources.list.d/mongodb-org-7.0.list
 
-  sudo apt update -y
-  sudo apt install -y mongodb-mongosh
+sudo apt update -y
+sudo apt install -y mongodb-mongosh
 
   echo "Installing MongoDB Realm CLI..."
   sudo npm install -g mongodb-realm-cli
