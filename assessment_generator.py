@@ -79,7 +79,7 @@ def getpass_with_asterisks(prompt="Password: "):
 default_export = "/home/ec2-user/realm_exports"
 
 BASE_EXPORT_DIR = input(
-    f"Informe o BASE_EXPORT_DIR "
+    f"Inform the BASE_EXPORT_DIR "
     f"[default: {default_export}]: "
 ).strip()
 
