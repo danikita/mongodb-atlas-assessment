@@ -75,7 +75,17 @@ When you run the Python script, it will guide you through a few required inputs:
 The script will first prompt you to provide the directory where the output files should be stored.  
 
 ### 2. Access Key
-Next, the script will ask for your access key, which will be used to authenticate with MongoDB Atlas.
+Next, the script will ask for your **Access Key**, which is used to authenticate with MongoDB Atlas APIs.
+
+> The Access Key must have the **`Organizations Read Only`** role assigned.
+
+### 3. Connection String
+The script will also prompt you to provide a MongoDB connection string in the following format:
+
+```bash
+mongodb+srv://:@.mongodb.net/
+```
+> The database user used in this connection string must have the **`Atlas Admin`** role.
 
 ---
 
@@ -83,9 +93,16 @@ Next, the script will ask for your access key, which will be used to authenticat
 
 Before running the script, ensure that your environment is properly configured in MongoDB Atlas:
 
-1. Open the **MongoDB Atlas Console**.
-2. Navigate to the **IP Access List** (Access List) associated with your access key.
-3. Add your current IP address to the allowlist.
+### 1. IP Access List 
+- Go to the **MongoDB Atlas Console**
+- Navigate to **Network Access**
+- Open the **IP Access List**
+- Add your machine's current IP address
 
-> **Important:** MongoDB Atlas restricts access by IP address for security reasons.  
-> If your IP address is not included in the access list, the script will not be able to connect to the database.
+
+### 2. Access Key Permissions
+- Inside **MongoDB Atlas**, go to your **Organization**.
+- Navigate to the **Applications** tab.
+- Create (or use an existing) **API Key**.
+- Ensure this API key has the **`Organizations Read Only`** role.
+- Add your machine's IP address to the **API Key Access List**.
